@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang=”pl”>
+
+<head>
+
+	<script defer>
+			
+			var clickNum =0;
+
+
+			function coockieClick() {
+			clickNum = clickNum + 1;
+			var cookieCounter = document.getElementById("cookieCounter");
+			cookieCounter.innerHTML = clickNum;
+
+			}
+
+		
+
+		</script>
+
+
+		<meta charset="utf-8">
+		<title>Cookie clicker</title>
+
+		
+       
+		<style>
+
+			body {
+				background-image: url("cookieBack.jpg");
+				background-size: cover;
+				color: white;
+			}
+
+
+			#intro {
+				width:800px;
+				height: 200px;
+				margin-left: auto;
+    			margin-right: auto;
+    			display: block;
+    			color: #92cac3;
+    			font-size: 30px;
+
+    		}
+
+			#cookieBlock {
+				width:800px;
+				height: 200px;
+				margin-left: auto;
+    			margin-right: auto;
+    		}			
+
+
+			#cookie {
+				display: block;
+				position: absolute;
+				margin-left: auto;
+				margin-right: auto;
+			}
+
+
+			#cookieCounter {
+				background-color: #92cac3;
+				text-align: center;
+				padding: 10px;
+				margin: 10px;
+				position: absolute;
+				height: 100px;
+				width: 200px;
+				font-size: 48px;
+			}
+		
+
+			
+</style>
+
+</head>
+
+<body>
+
+	<div id="intro">
+		
+		Klikaj ciastko!
+
+	</div>
+
+	<div id="cookieBlock">
+
+		<img src="cookie.png" alt="smallCookie" onclick="coockieClick()">
+	</div>
+
+	<footer id="cookieCounter">
+
+	</footer>
+
+	</div>
+
+</body>
