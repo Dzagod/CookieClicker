@@ -1,21 +1,31 @@
-<!doctype html>
-<html lang=”pl”>
+	<!doctype html>
+	<html lang=”pl”>
 
-<head>
+	<head>
 
-	<script defer>
+		<script defer>
 			
 			var clickNum =0;
 
 
 			function coockieClick() {
-			clickNum = clickNum + 1;
-			var cookieCounter = document.getElementById("cookieCounter");
-			cookieCounter.innerHTML = clickNum;
-
+				clickNum = clickNum + 1;
+				var cookieCounter = document.getElementById("cookieCounter");
+				cookieCounter.innerHTML = clickNum;
+				var image = document.getElementById("cookieImage");
+				image.classList.add("resize");
+				setTimeout(removeClass, 100);
 			}
 
-		
+			function removeClass() {
+				var image = document.getElementById("cookieImage");
+				image.classList.remove("resize");
+			}
+
+			
+
+
+
 
 		</script>
 
@@ -71,30 +81,34 @@
 				width: 200px;
 				font-size: 48px;
 			}
-		
+			
+			.resize {
+				width: 110%;
+				height: 140%;
+			}
 
 			
-</style>
+		</style>
 
-</head>
+	</head>
 
-<body>
+	<body>
 
-	<div id="intro">
+		<div id="intro">
 		
-		Klikaj ciastko!
+			Klikaj ciastko!
 
-	</div>
+		</div>
 
-	<div id="cookieBlock">
+		<div id="cookieBlock">
 
-		<img src="cookie.png" alt="smallCookie" onclick="coockieClick()">
-	</div>
+			<img src="cookie.png" alt="smallCookie" id="cookieImage" onclick="coockieClick()" onclick="removeClass()">
+		</div>
 
-	<footer id="cookieCounter">
+		<footer id="cookieCounter">
 
-	</footer>
+		</footer>
 
-	</div>
+		</div>
 
-</body>
+	</body>
