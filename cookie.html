@@ -2,12 +2,10 @@
 	<html lang=”pl”>
 
 	<head>
-
-		<script defer>
+		<link rel='stylesheet' href='cookie.css'/>
+		<script defer src="cookie.js">
 			
 			var clickNum =0;
-
-
 			function coockieClick() {
 				clickNum = clickNum + 1;
 				var cookieCounter = document.getElementById("cookieCounter");
@@ -16,14 +14,14 @@
 				image.classList.add("resize");
 				setTimeout(removeClass, 100);
 			}
-
 			function removeClass() {
 				var image = document.getElementById("cookieImage");
 				image.classList.remove("resize");
 			}
 
-			
-
+			var childrenAmount = 0;
+			var housekeepersAmount = 0;
+			var candymenAmount = 0;
 
 
 
@@ -32,102 +30,48 @@
 
 		<meta charset="utf-8">
 		<title>Cookie clicker</title>
-
-		
-       
-		<style>
-
-			body {
-				background-image: url("cookieBack.jpg");
-				background-size: cover;
-				color: white;
-			}
-
-
-			#intro {
-				width:800px;
-				height: 200px;
-				margin-left: auto;
-    			margin-right: auto;
-    			display: block;
-    			color: #92cac3;
-    			font-size: 30px;
-
-    		}
-
-			#cookieBlock {
-				width:800px;
-				height: 300px;
-				margin-left: auto;
-    			margin-right: auto;
-    			text-align: center;
-    		}			
-
-
-			#cookieImage {
-				 position: absolute;
-    			 margin: auto;
-   				 top: 0;
-   				 left: 0;
-   				 right: 0;
-   				 bottom: 0;
-
-			}
-
-
-			#cookieCounter {
-				background-color: #92cac3;
-				text-align: center;
-				padding: 10px;
-				margin: 10px;
-				position: absolute;
-				height: 100px;
-				width: 200px;
-				font-size: 48px;
-			}
-
-			#collector {
-				text-align: right;
-				padding: 10px;
-				margin: 40px;
-			}
-
-			
-			.resize {
-				height: 50%;
-			}
-
-			
-		</style>
-
+ 
 	</head>
 
 	<body>
 
-		<div id="intro">
-		
-			Klikaj ciastko!
+		<div class="header"><h2>Click the cookie</h2></div>
 
+		<div class='game-field'>
+			<div class="empty column">Na razie jestem pusty</div>
+			<div class="cookie-field column">
+				<div class="cookie-image"> 
+					<img src="cookie.png" alt="smallCookie" id="cookieImage" onclick="coockieClick()" onclick="removeClass()">
+				</div>
+				<div id="cookieCounter" class="counter"></div>
+			</div>
+			<div class="collectors-container column">
+				<div class="intro-collectors">
+					<div> <p>Dostępni zbieracze</p>
+						<hr>
+					</div>
+					<div class="collected-number"><p>Twoi zbieracze</p>	<hr>
+					</div>
+				</div>	
+				<div class="collector">
+					<div><img src="child.png" alt="col1"></div>
+					<div id="childrenAmount" class="number">0</div>
+				</div>
+				<div class="description"><p>CHILD / 10+2 / 2 </p></div>
+				<div class="collector">
+					<div><img src="female.png" alt="col2"></div>
+					<div id="housekeepersAmount" class="number">0</div>
+				</div>
+				<div class="description"><p>HOUSEKEEPER / 100+20 / 22</p></div>
+				<div class="collector">
+					<div><img src="candyman.png" alt="col3"></div>
+					<div id="candymenAmount" class="number">0</div>
+				</div>
+				<div class="description"><p>CANDYMAN / 1000+200 / 222</p></div>
+				<div class="legend"><p>Legenda:</p>
+					<p>nazwa zbieracza / koszt za pierwszego +każdego następnego / ilość zbieranych ciastek</p>
+				</div>
+			</div>			
 		</div>
-		<div id="collector">
-			
-			<img src="child.png" alt="collector">
-			<img src="female.png" alt="collector">
-			<img src="candyman.png" alt="collector">
-
-
-
-		</div>
-
-		<div id="cookieBlock">
-
-			<img src="cookie.png" alt="smallCookie" id="cookieImage" onclick="coockieClick()" onclick="removeClass()">
-		</div>
-
-		<footer id="cookieCounter">
-
-		</footer>
-
-		</div>
-
+		<div class="footer"></div>
 	</body>
