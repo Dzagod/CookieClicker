@@ -16,26 +16,24 @@ body {
 
 		
 
-#cookieImage {
-    margin: auto;
-   	top: 0;
-   	left: 0;
-   	right: 0;
-   	bottom: 0;
+.cookie-image {
+    display: flex;
+    justify-content: center;
+    align-items:center;    
+    height: 15em;
 }
 
 .counter {
-	background-color: rgba(63, 191, 191, 0.2);
+	background-color: rgba(255, 255, 255, 0.5);
 	font-size: 4em;
-	width: 2em;
-	height: 2em;
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	margin-top: 0.5em;
 	color: #5b6566;
-	border: 0.25em solid rgba(235, 194, 194, 0.5);
 	box-sizing: border-box;
+	height: 1em;
+	margin-top: 0.5em;
+	width: 90%;
+
 }
 
 .game-field {
@@ -69,8 +67,10 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	padding: 0.5em;
+	padding: 0.05em;
+	margin-top: 0.05em;
 	align-items: center;
+	font-size: 4em;
 }
 
 .column {
@@ -81,8 +81,8 @@ body {
 
 }
 .legend {
-	background-color: #ebc2c2;
-	width: 90%;
+	background-color: rgba(235, 194, 194, 0.5);
+	width: 100%;
 	height: 8em;
 	margin-top: 0.5em;
 	color: #5b6566;
@@ -92,5 +92,5 @@ body {
 
 			
 .resize {
-	height: 50%;
+	height: 10em;
 }
