@@ -78,18 +78,24 @@ body {
 	width: 30%;
 	padding: 1.5em;
 	box-sizing: border-box;
-
 }
 .legend {
-	background-color: rgba(235, 194, 194, 0.5);
+	background-color: rgba(235, 194, 194, 0.2);
+	display: flex;
+	justify-content: center;
 	width: 100%;
 	height: 8em;
-	margin-top: 0.5em;
+	margin: 0.5em;
 	color: #5b6566;
 	padding: 1em;
 }
 
-
+.buyButton {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 1em;
+}
 			
 .resize {
 	height: 10em;
