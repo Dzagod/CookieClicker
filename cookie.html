@@ -5,7 +5,7 @@
 		<link rel='stylesheet' href='cookie.css'/>
 		<script defer>
 			
-			var clickNum =0;
+			var clickNum = 0;
 
 			function cookieClick() {
 				clickNum = clickNum + 1;
@@ -29,19 +29,65 @@
 				firstPrice: 10,
 				changePrice: 2,
 				collectedCookies: 2,
-				value: 0,
+				value: 6,
 				amount: 0,
 				id: 'one',
+				sellId: 'oneSell',
 				updateCollectorAmount: function() {
 					this.amount += 1;
 					var oneAmount = document.getElementById("childrenAmount");
 					oneAmount.innerHTML = this.amount;
-				}
-				
+				},
+				intervals:[],
+				updateAmountAfterSale: function() {
+					this.amount -= 1;
+					var oneAmount = document.getElementById("childrenAmount");
+					oneAmount.innerHTML = this.amount
+				} 
 			};
 
-			var collectors = [collectorChild]
-			//, collectorHousekeeper, collectorCandyman];
+			var collectorHousekeeper = {
+				firstPrice: 100,
+				changePrice: 20,
+				collectedCookies: 22,
+				value: 66,
+				amount: 0,
+				id: 'two',
+				sellId: 'twoSell',
+				updateCollectorAmount: function() {
+					this.amount += 1;
+					var oneAmount = document.getElementById("housekeepersAmount");
+					oneAmount.innerHTML = this.amount;
+				},
+				intervals: [],
+				updateAmountAfterSale: function() {
+					this.amount -= 1;
+					var oneAmount = document.getElementById("housekeepersAmount");
+					oneAmount.innerHTML = this.amount
+				} 
+			};
+			var collectorCandyman = {
+				firstPrice: 1000,
+				changePrice: 200,
+				collectedCookies: 222,
+				value: 666,
+				amount: 0,
+				id: 'three',
+				sellId: 'threeSell',
+				updateCollectorAmount: function() {
+					this.amount += 1;
+					var oneAmount = document.getElementById("candymenAmount");
+					oneAmount.innerHTML = this.amount;
+				},
+				intervals: [],
+				updateAmountAfterSale: function() {
+					this.amount -= 1;
+					var oneAmount = document.getElementById("candymenAmount");
+					oneAmount.innerHTML = this.amount
+				} 	
+			};
+
+			var collectors = [collectorChild, collectorHousekeeper, collectorCandyman];
 
 			function getId(buttonId) {
 				buyCollector(buttonId)
@@ -50,7 +96,7 @@
 
 			function buyCollector(buttonId) {
 				var collectorObject = collectors.find(function(element) {return element.id === buttonId});
-				var {firstPrice, changePrice, amount, collectedCookies} = collectorObject;
+				var {intervals, firstPrice, changePrice, amount, collectedCookies, sellId} = collectorObject;
 				var nextPrice = firstPrice + changePrice * amount; 
 				if (clickNum < nextPrice) { 
 					alert('Nie masz wystarczającej ilości ciastek');
@@ -58,16 +104,35 @@
 					clickNum = clickNum - nextPrice;
 					collectorObject.updateCollectorAmount();
 					updateCookieCounter();
-					setInterval (function() {
+					var intervalID = setInterval (function() {
 						addCookies(collectedCookies);
-					}, 3000);
+					}, 5000);
+					intervals.push(intervalID);
 				};
 			};
 
 			function addCookies (collectedCookies) {
 				clickNum = clickNum + collectedCookies;
 				updateCookieCounter();
-			}
+			};
+
+			function getSellId(buttonId) {
+				sellCollector(buttonId)
+			};
+	
+
+			function sellCollector(buttonId) {
+				var collectorObject = collectors.find(function(element) {return element.sellId === buttonId});
+				var {value, intervals, amount} = collectorObject;
+				if (amount > 0) {
+					clearInterval(intervals.pop());
+					collectorObject.updateAmountAfterSale();
+					clickNum = clickNum + value;
+					updateCookieCounter();
+				} else {
+					alert('Nie masz jeszcze tego zbieracza');
+				}
+			};	
 
 		</script>
 
@@ -88,18 +153,24 @@
 				<div class="cookie-image"> 
 					<img src="cookie.png" alt="smallCookie" id="cookieImage" onclick="cookieClick()">
 				</div>
-				<div id="cookieCounter" class="counter"></div>
+				<div id="cookieCounter" class="counter">No cookies</div>
 			</div>
 			<div class="collectors-container column">
-				<div class="intro-collectors">
+				<div class="legend"><h4>Legend:</h4>
+					<p>Collector name / price for the first one + change of a price of next ones / amount of collected cookies</p>
 				</div>	
 				<div class="collector">
 					<div><img src="child.png" alt="col1"></div>
 					<div id="childrenAmount" class="number">0</div>
 				</div>
 				<div class="description"><p>CHILD / 10+2 / 2 </p></div>
-				<div class="buyButton" id="one" onclick="getId(this.id)"> 
-					<button class="btn btn-secondary">BUY ME</button> 
+				<div class="buttons">
+					<div class="buyButton" id="one" onclick="getId(this.id)"> 
+						<button class="btn btn-outline-primary">BUY</button>
+					</div>	
+					<div class="sellButton" id="oneSell" onclick="getSellId(this.id)"> 
+						<button class="btn btn-outline-danger">SELL</button> 
+ 					</div>
 				</div>
 				<hr>
 				<div class="collector">
@@ -107,8 +178,13 @@
 					<div id="housekeepersAmount" class="number">0</div>
 				</div>
 				<div class="description"><p>HOUSEKEEPER / 100+20 / 22</p></div>
-				<div class="buyButton" id="two" onclick="getId(this.id)"> 
-					<button class="btn btn-secondary">BUY ME</button> 
+				<div class="buttons">
+					<div class="buyButton" id="two" onclick="getId(this.id)"> 
+						<button class="btn btn-outline-primary">BUY</button>
+					</div>
+					<div class="sellButton" id="twoSell" onclick="getSellId(this.id)"> 
+						<button class="btn btn-outline-danger">SELL</button> 
+					</div>	
 				</div>
 				<hr>
 				<div class="collector">
@@ -116,13 +192,13 @@
 					<div id="candymenAmount" class="number">0</div>
 				</div>
 				<div class="description"><p>CANDYMAN / 1000+200 / 222</p></div>
-				<div class="buyButton" id="three" onclick="getId(this.id)"> 
-					<button class="btn btn-secondary">BUY ME</button> 
-				</div>
-				<div class="legend"><p>Legenda:</p>
-					<p>nazwa zbieracza / koszt za pierwszego +każdego następnego / ilość zbieranych ciastek</p>
-				</div>
-			</div>			
-		</div>
+				<div class="buttons">
+					<div class="buyButton" id="three" onclick="getId(this.id)"> 
+						<button class="btn btn-outline-primary">BUY</button>
+					</div>
+					<div class="sellButton" id="threeSell" onclick="getSellId(this.id)"> 
+						<button class="btn btn-outline-danger">SELL</button> 				
+					</div>
+				</div>			
 		<div class="footer"></div>
 	</body>

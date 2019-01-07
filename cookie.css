@@ -5,16 +5,13 @@ body {
 }
 
 .header {
-	height: 200px;
+	height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #5b6566;
     font-size: 3em;
-    border: 1px solid #ff0000;
 }
-
-		
 
 .cookie-image {
     display: flex;
@@ -24,13 +21,16 @@ body {
 }
 
 .counter {
-	background-color: rgba(255, 255, 255, 0.5);
-	font-size: 4em;
+	font-size: 1em;
 	display: flex;
 	justify-content: center;
+	resize: both;
+	overflow: hidden;
+	padding-left: 0.2em;
+	font-size: 4em;
 	color: #5b6566;
 	box-sizing: border-box;
-	height: 1em;
+	height: 2em;
 	margin-top: 0.5em;
 	width: 90%;
 
@@ -39,7 +39,6 @@ body {
 .game-field {
 	display: flex;
 	justify-content: center;
-	border: 1px solid #ff0000;
 	justify-content: space-between;
 }
 
@@ -55,6 +54,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background-color: rgba(128, 128, 0, 0.5);
+
 }
 
 .intro-collectors {
@@ -73,21 +74,29 @@ body {
 	font-size: 4em;
 }
 
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	margin: 2em;
+	padding-top: 1em;
+}
+
 .column {
-	background-color: rgba(63, 191, 191, .4);
 	width: 30%;
 	padding: 1.5em;
 	box-sizing: border-box;
+	background-color: rgba(255, 255, 255, .5);
 }
 .legend {
-	background-color: rgba(235, 194, 194, 0.2);
-	display: flex;
-	justify-content: center;
+	background-color: rgba(255, 255, 255, .5);
+	border: 1px solid #daba6e;
 	width: 100%;
 	height: 8em;
-	margin: 0.5em;
+	margin: 0.1em;
 	color: #5b6566;
-	padding: 1em;
+	padding: 0.8em;
+	overflow: scroll;
+	resize: both;
 }
 
 .buyButton {
